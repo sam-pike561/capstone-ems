@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -33,5 +35,9 @@ public class Employee {
 
     @Column(name = "salary")
     private String salary;
+
+    @OneToMany(targetEntity = Meeting.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "em_fk", referencedColumnName = "id")
+    private List<Meeting> meetings;
 
 }
