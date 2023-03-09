@@ -1,5 +1,7 @@
 package com.perscholas.ems.employeemanagementwebapp.dto;
 
+// Data Transfer Object used to create new instance of user to be registered into system
+
 public class UserRegistrationDto {
     private String firstName;
     private String lastName;

@@ -2,8 +2,8 @@ package com.perscholas.ems.employeemanagementwebapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
+// entry point of application
 @SpringBootApplication
 public class EmployeeManagementWebappApplication {
 

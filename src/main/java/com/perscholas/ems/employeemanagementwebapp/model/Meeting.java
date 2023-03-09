@@ -3,7 +3,8 @@ package com.perscholas.ems.employeemanagementwebapp.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Objects;
+
+//Define meeting entity with fields, getters/setters and constructors.
 
 @Data
 @AllArgsConstructor

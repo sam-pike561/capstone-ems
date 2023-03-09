@@ -20,6 +20,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.JoinColumn;
 
+//Define user entity with fields, getters/setters and constructors.
+
 @Entity
 @Getter
 @Setter
@@ -40,6 +42,8 @@ public class User {
     private String email;
 
     private String password;
+
+    // create a user roles table created from a many-to-many relationship between user and role
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(

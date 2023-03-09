@@ -22,6 +22,7 @@ public class UserRegistrationController {
 
     @ModelAttribute("user")
     public UserRegistrationDto userRegistrationDto() {
+        // access dto methods to create new instance of user
         return new UserRegistrationDto();
     }
 
@@ -32,6 +33,7 @@ public class UserRegistrationController {
 
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
+        // register newly created dto to db
         userService.save(registrationDto);
         return "redirect:/registration?success";
     }

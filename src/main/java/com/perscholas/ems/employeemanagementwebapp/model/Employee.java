@@ -1,17 +1,21 @@
 package com.perscholas.ems.employeemanagementwebapp.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+//Define employee entity with fields, getters/setters and constructors.
 
+@Data
+@Builder
 @Entity
 @Table(name = "employees")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee {
 
     @Id

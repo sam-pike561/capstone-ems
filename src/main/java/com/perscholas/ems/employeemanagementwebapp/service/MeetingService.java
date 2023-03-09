@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// Abstract meeting service methods from implementation
+
 @Service
 public interface MeetingService {
     List<Meeting> getAllMeetings();

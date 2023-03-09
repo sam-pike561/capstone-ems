@@ -3,7 +3,6 @@ package com.perscholas.ems.employeemanagementwebapp.controller;
 
 import com.perscholas.ems.employeemanagementwebapp.model.Employee;
 import com.perscholas.ems.employeemanagementwebapp.model.Meeting;
-import com.perscholas.ems.employeemanagementwebapp.service.EmployeeService;
 import com.perscholas.ems.employeemanagementwebapp.service.MeetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,7 +20,7 @@ public class ScheduleController {
 
     @GetMapping("/schedule")
     public String showSchedule(Model model) {
-        return findPaginatedMeetings(1, "startingHour", "asc", model);
+        return findPaginatedMeetings(1, "startingHour", "desc", model);
     }
 
 
@@ -35,25 +34,45 @@ public class ScheduleController {
 
     @PostMapping("/saveMeeting")
     public String saveMeeting(@ModelAttribute("meeting") Meeting meeting) {
-        // save employee to database
+        // save meeting to database
         meetingService.saveMeeting(meeting);
         return "redirect:/";
     }
 
+    @GetMapping("/deleteMeeting/{id}")
+    public String deleteMeeting(@PathVariable (value = "id") long id) {
 
-    @GetMapping(name = "/meeting_page/{pageNo}")
+        // call delete meeting method
+        this.meetingService.deleteMeetingById(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/showFormForMeetingUpdate/{id}")
+    public String showFormForMeetingUpdate(@PathVariable ( value = "id") long id, Model model) {
+
+        // get meeting from the service
+        Meeting meeting = meetingService.getMeetingById(id);
+
+        // set meeting as a model attribute to pre-populate the form
+        model.addAttribute("meeting", meeting);
+        return "update_meeting";
+    }
+
+
+    @GetMapping(name = "/meetingPage/{pageNo}")
+    @ResponseBody
     public String findPaginatedMeetings(@PathVariable(value = "pageNo") int pageNo,
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
         int pageSize = 5;
 
-        Page<Meeting> page = meetingService.findPaginatedMeetings(pageNo, pageSize, sortField, sortDir);
-        List<Meeting> listMeetings = page.getContent();
+        Page<Meeting> meetingPage = meetingService.findPaginatedMeetings(pageNo, pageSize, sortField, sortDir);
+        List<Meeting> listMeetings = meetingPage.getContent();
 
         model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("totalPages", meetingPage.getTotalPages());
+        model.addAttribute("totalItems", meetingPage.getTotalElements());
 
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);

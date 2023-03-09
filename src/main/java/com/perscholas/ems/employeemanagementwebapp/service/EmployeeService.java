@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.perscholas.ems.employeemanagementwebapp.model.Employee;
 import org.springframework.data.domain.Page;
-
+// Abstract employee service methods from implementation
 
 public interface EmployeeService {
     List<Employee> getAllEmployees();
