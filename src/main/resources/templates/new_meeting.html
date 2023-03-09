@@ -22,12 +22,12 @@
         <input type="text" th:field="*{title}"
                placeholder="Title of Meeting" class="form-control mb-4 col-4">
 
-            <select class="form-control" id="testOrder" name="testOrder">
-                <option value="">Select Test Order</option>
-                <option th:each="employee : ${employees}"
-                        th:value="${employee.id}"
-                        th:text="${employee.firstName}+' : '+${employee.lastName}"></option>
-            </select>
+<!--            <select class="form-control" id="testOrder" name="testOrder">-->
+<!--                <option value="">Select Test Order</option>-->
+<!--                <option th:each="employee : ${listEmployees}"-->
+<!--                        th:value="${employee}"-->
+<!--                        th:text="${employee.firstName}+' : '+${employee.lastName}"></option>-->
+<!--            </select>-->
 
         <button type="submit" class="btn btn-info col-2"> Save Meeting</button>
     </form>
